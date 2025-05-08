@@ -13,7 +13,7 @@
 //       scaleReads: 'slave',
 //       redisOptions: config.redis.options
 //     });
-    
+
 //     this.redis.on('error', (err) => {
 //       logger.error('Redis error:', err);
 //     });
@@ -21,21 +21,21 @@
 
 //   async processOrderBookUpdate(symbol, update) {
 //     const pipeline = this.redis.pipeline();
-    
+
 //     update.bids.forEach(({ price, quantity }) => {
 //       const key = `orderbook:${symbol}:bids`;
-//       quantity === 0 
+//       quantity === 0
 //         ? pipeline.zrem(key, price)
 //         : pipeline.zadd(key, price, `${price}:${quantity}`);
 //     });
-    
+
 //     // Similar for asks...
-    
+
 //     pipeline.hset(`orderbook:${symbol}:meta`, {
 //       sequence: update.sequence.toString(),
 //       updatedAt: Date.now()
 //     });
-    
+
 //     await pipeline.exec();
 //   }
 
@@ -44,7 +44,7 @@
 //     pipeline.zrange(`orderbook:${symbol}:bids`, 0, -1, 'WITHSCORES');
 //     pipeline.zrange(`orderbook:${symbol}:asks`, 0, -1, 'WITHSCORES');
 //     pipeline.hgetall(`orderbook:${symbol}:meta`);
-    
+
 //     const results = await pipeline.exec();
 //     return results.map(([err, result]) => {
 //       if (err) throw err;

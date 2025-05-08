@@ -13,11 +13,11 @@ class WSServer {
     this.server.on('connection', (ws, req) => {
       const clientId = req.headers['x-client-id'];
       logger.info(`Client connected: ${clientId}`);
-      
+
       ws.on('message', async (message) => {
         try {
           const { action, symbol } = JSON.parse(message);
-          
+
           if (action === 'subscribe') {
             await this.handleSubscribe(clientId, symbol, ws);
           }
@@ -25,7 +25,7 @@ class WSServer {
           logger.error('Message handling error:', err);
         }
       });
-      
+
       ws.on('close', () => {
         this.handleUnsubscribe(clientId);
       });
@@ -34,10 +34,10 @@ class WSServer {
 
   async handleSubscribe(clientId, symbol, ws) {
     const obm = new OrderBookManager(symbol);
-    
+
     // Send initial snapshot
     ws.send(await obm.getSnapshot());
-    
+
     // Track subscription
     this.subscriptions.set(clientId, { symbol, ws });
   }

@@ -10,7 +10,7 @@ class OrderBookManager {
 
   async processUpdate(updateBuffer) {
     const update = OrderBookUpdate.decode(updateBuffer);
-    
+
     if (update.sequence <= this.sequence) {
       logger.debug(`Stale update for ${this.symbol}`);
       return false;
@@ -28,7 +28,7 @@ class OrderBookManager {
       sequence: this.sequence,
       timestamp: BigInt(Date.now()),
       bids,
-      asks
+      asks,
     }).finish();
   }
 }
