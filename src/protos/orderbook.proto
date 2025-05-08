@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message PriceLevel {
+  double price = 1;
+  double quantity = 2;
+}
+
+message OrderBookSnapshot {
+  string symbol = 1;
+  uint64 sequence = 2;
+  uint64 timestamp = 3;
+  repeated PriceLevel bids = 4;
+  repeated PriceLevel asks = 5;
+}
+
+message OrderBookUpdate {
+  string symbol = 1;
+  uint64 sequence = 2;
+  repeated PriceLevel bids = 3;
+  repeated PriceLevel asks = 4;
+}
