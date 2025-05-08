@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": " node scripts/compile-protos.js && nodemon app.js",
+    "dev": "nodemon",
     "compile-protos": "node scripts/compile-protos.js",
     "prestart": "npm run compile-protos",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,6 +33,11 @@
     "ws": "^8.18.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
